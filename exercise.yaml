@@ -19,6 +19,5 @@
 
      - name: Create a simple HTML page
        shell: |
-           echo "<html><body><h1>This is EC2 instance $(hostname) located in $ls -al
-           (timedatectl)</h1></body></html>" \
+           echo "<html><body><h1>This is EC2 instance $(hostname) located in $(timedatectl)</h1></body></html>" \
            > /var/www/html/index.html
