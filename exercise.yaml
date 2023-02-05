@@ -1,0 +1,24 @@
+---
+- name: Provision EC2 instances with Apache and timezone
+  hosts: all
+  become: true
+  become_user: root
+
+  vars:
+      timezone: Africa/Lagos
+
+  tasks:
+     - name: Install Apache
+       apt:
+            name: apache2
+            state: latest
+
+     - name: Set timezone
+       shell: |
+            timedatectl set-timezone {{ timezone }}
+
+     - name: Create a simple HTML page
+       shell: |
+           echo "<html><body><h1>This is EC2 instance $(hostname) located in $ls -al
+           (timedatectl)</h1></body></html>" \
+           > /var/www/html/index.html
